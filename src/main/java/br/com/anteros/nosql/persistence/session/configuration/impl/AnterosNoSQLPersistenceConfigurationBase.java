@@ -31,6 +31,8 @@ public abstract class AnterosNoSQLPersistenceConfigurationBase extends AbstractN
 	
 	protected NoSQLDialect dialect;
 
+	
+
 	public AnterosNoSQLPersistenceConfigurationBase() {
 		super();
 	}

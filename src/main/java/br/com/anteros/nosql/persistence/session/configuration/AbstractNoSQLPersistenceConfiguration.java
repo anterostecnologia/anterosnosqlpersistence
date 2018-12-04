@@ -50,7 +50,7 @@ public abstract class AbstractNoSQLPersistenceConfiguration extends NoSQLBasicCo
 
 	protected static Logger LOG = LoggerProvider.getInstance().getLogger(AbstractNoSQLPersistenceConfiguration.class);
 
-	public static final String SECURITY_PACKAGE = "br.com.anteros.security.model";
+	public static final String SECURITY_PACKAGE = "br.com.anteros.security.store*";
 	public static final String CONVERTERS_PACKAGE = "br.com.anteros.persistence.nosql.converters";
 
 	public static final String ANNOTATED_CLASSES = "annotatedClasses";
@@ -141,6 +141,15 @@ public abstract class AbstractNoSQLPersistenceConfiguration extends NoSQLBasicCo
 	
 	public AbstractNoSQLPersistenceConfiguration packageScanEntity(String packageName) {
 		getSessionFactoryConfiguration().getPackageToScanEntity().setPackageName(packageName);
+		return this;
+	}
+	
+	public boolean isIncludeSecurityModel() {
+		return getSessionFactoryConfiguration().isIncludeSecurityModel();
+	}
+
+	public AbstractNoSQLPersistenceConfiguration includeSecurityModel(boolean includeSecurityModel) {
+		getSessionFactoryConfiguration().setIncludeSecurityModel(includeSecurityModel);
 		return this;
 	}
 

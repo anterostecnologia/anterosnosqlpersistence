@@ -136,7 +136,7 @@ public class NoSQLPersistenceModelConfiguration {
 			 * não é uma coleção.
 			 */
 			if (!fieldConfiguration.isAnnotationPresent(new Class[] { Property.class })
-					&& (fieldConfiguration.isSimpleField())) {
+					&& (fieldConfiguration.isSimpleField()) && (!fieldConfiguration.isId())) {
 				fieldConfiguration.name(fieldConfiguration.getField().getName());
 			}
 
