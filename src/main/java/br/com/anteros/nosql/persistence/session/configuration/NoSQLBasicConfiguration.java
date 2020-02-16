@@ -116,16 +116,23 @@ public abstract class NoSQLBasicConfiguration implements BasicConfiguration {
 	}
 
 	public NoSQLBasicConfiguration configure(String xmlFile) throws AnterosNoSQLConfigurationException {
-		InputStream is;
+		InputStream is=null;
 		try {
 			final List<URL> resources = ResourceUtils.getResources(xmlFile, getClass());
 			if ((resources != null) && (resources.size() > 0)) {
 				final URL url = resources.get(0);
 				is = url.openStream();
 				configure(is);
+				is.close();
 				return this;
 			}
 		} catch (final Exception e) {
+			if (is!=null) {
+				try {
+					is.close();
+				} catch (IOException e1) {
+				}
+			}
 			throw new AnterosNoSQLConfigurationException("Impossível realizar a leitura " + xmlFile + " " + e);
 		}
 
